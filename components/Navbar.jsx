@@ -7,7 +7,7 @@ export default function Navbar() {
                 <span className=" font-mono text-2xl tracking-widest"><span className="text-red-700">P</span>epe<span className="text-red-700">F</span>lix</span>
             </li>
             <li className="flex-1 flex border-b-2 border-zinc-600 justify-center items-center w-full hover:bg-zinc-600 active:underline">
-                <Link className="uppercase" href="/">Películas destacadas</Link>
+                <Link className="uppercase text-center" href="/">Películas destacadas</Link>
             </li>
             <li className="flex-1 border-b-2 border-zinc-600 flex justify-center items-center w-full hover:bg-zinc-600 active:underline">
                 <Link className="uppercase" href="/buscar">Buscar</Link>
