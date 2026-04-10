@@ -6,7 +6,7 @@ export default async function Home() {
     <>
       <h1 className="py-6 uppercase">Películas destacadas</h1>
       <ContenedorPelis />
-     
+
     </>
   );
 }

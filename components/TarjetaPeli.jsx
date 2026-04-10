@@ -1,17 +1,18 @@
-import hermanoOso from "@/public/hermano-oso.webp"
 import Image from "next/image";
+import Like from "@/components/Like"
 
-export default function TarjetaPeli() {
+export default function TarjetaPeli({ peliData }) {
     return (
-        <article className="w-1/4 p-4 bg-zinc-800 flex flex-col justify-around items-center rounded-2xl">
+        <article className="w-1/4 p-4 bg-zinc-800 flex flex-col justify-around items-center rounded-2xl relative">
             <div>
-                <Image className="rounded-2xl" src={hermanoOso} alt="Tremenda peli" />
+                <Image className="rounded-2xl" src={`https://image.tmdb.org/t/p/w500/${peliData.poster_path}`} width="500" height="500" alt="Tremenda peli" />
             </div>
             <div className="flex flex-col justify-center text-white items-center gap-4">
-                <h2>Hermano oso</h2>
-                <span className="text-xs">Duración: 120 min</span>
-                <span className="text-xs">Valoración: 5 estrellas</span>
+                <h2>{peliData.title}</h2>
+                <span className="text-xs">Estreno: {peliData.release_date}</span>
+                <span className="text-xs">Valoración: {peliData.vote_average} estrellas</span>
             </div>
-        </article>
+            <Like />
+        </article >
     )
 }
