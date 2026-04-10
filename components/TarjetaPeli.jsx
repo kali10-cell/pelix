@@ -10,7 +10,7 @@ export default function TarjetaPeli({ peliData }) {
             <div className="flex flex-col justify-center text-white items-center gap-4">
                 <h2>{peliData.title}</h2>
                 <span className="text-xs">Estreno: {peliData.release_date}</span>
-                <span className="text-xs">Valoración: {peliData.vote_average} estrellas</span>
+                <span className="text-xs">Valoración: {Math.round(peliData.vote_average)} estrellas</span>
             </div>
             <Like />
         </article >
