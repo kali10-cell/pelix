@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Like from "@/components/Like";
 import Link from "next/link";
+import portadaGenerica from '@/public/hermano-oso.webp'
 
 export default function TarjetaPeli({ peliData }) {
   const rating = Math.round(peliData.vote_average * 10) / 10;
@@ -14,7 +15,8 @@ export default function TarjetaPeli({ peliData }) {
           <div className="relative aspect-2/3 w-full">
             <Image
               className="object-cover"
-              src={`https://image.tmdb.org/t/p/w500${peliData.poster_path}`}
+              loading="eager"
+              src={peliData.poster_path ? `https://image.tmdb.org/t/p/w500${peliData.poster_path}` : "/hermano-oso.webp"}
               fill
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
               alt={`Poster de ${peliData.title}`}
