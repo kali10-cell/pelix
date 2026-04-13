@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function TarjetaPeli({ peliData }) {
     return (
-        <Link href="#" className="w-full group overflow-visible p-16">
+        <Link href={`/pelicula/${peliData.id}`} className="w-full group overflow-visible p-16">
             <article className="p-4 bg-zinc-800 flex flex-col justify-around items-center rounded-2xl relative group-hover:scale-105 transition-all duration-300 ease-in group-hover:bg-zinc-500 overflow-visible">
                 <div>
                     <Image className="rounded-2xl" src={`https://image.tmdb.org/t/p/w500/${peliData.poster_path}`} width="500" height="500" alt="Tremenda peli" />
