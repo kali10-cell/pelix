@@ -1,20 +1,51 @@
 import Link from "next/link";
 
+const links = [
+  { href: "/", label: "Destacadas" },
+  { href: "/buscar", label: "Buscar" },
+  { href: "/favoritos", label: "Favoritos" },
+];
+
 export default function Navbar() {
-    return (
-        <ul className="flex flex-col justify-around items-center min-h-screen">
-            <li className="flex-1 flex justify-start items-start w-full absolute top-6 left-6 ">
-                <span className=" font-mono text-2xl tracking-widest"><span className="text-red-700">P</span>epe<span className="text-red-700">F</span>lix</span>
+  return (
+    <>
+      {/* Sidebar — solo en md+ */}
+      <nav className="hidden md:flex flex-col gap-8 p-6 h-full">
+        <Link href="/" className="font-mono text-2xl tracking-widest">
+          <span className="text-red-600">P</span>epe<span className="text-red-600">F</span>lix
+        </Link>
+        <ul className="flex flex-col gap-1">
+          {links.map(({ href, label }) => (
+            <li key={href}>
+              <Link
+                href={href}
+                className="flex items-center px-3 py-2.5 rounded-xl text-sm font-medium text-zinc-400 hover:text-white hover:bg-zinc-700/60 transition-all duration-200"
+              >
+                {label}
+              </Link>
             </li>
-            <li className="flex-1 flex border-b-2 border-zinc-600 justify-center items-center w-full hover:bg-zinc-600 active:underline">
-                <Link className="uppercase text-center" href="/">Películas destacadas</Link>
-            </li>
-            <li className="flex-1 border-b-2 border-zinc-600 flex justify-center items-center w-full hover:bg-zinc-600 active:underline">
-                <Link className="uppercase" href="/buscar">Buscar</Link>
-            </li>
-            <li className="flex-1 border-b-2 border-zinc-600 flex justify-center items-center w-full hover:bg-zinc-600 active:underline">
-                <Link className="uppercase" href="/favoritos">Favoritos</Link>
-            </li>
+          ))}
         </ul>
-    )
+      </nav>
+
+      {/* Barra superior — solo en móvil */}
+      <nav className="md:hidden flex items-center justify-between px-4 h-full">
+        <Link href="/" className="font-mono text-xl tracking-widest">
+          <span className="text-red-600">P</span>epe<span className="text-red-600">F</span>lix
+        </Link>
+        <ul className="flex items-center gap-1">
+          {links.map(({ href, label }) => (
+            <li key={href}>
+              <Link
+                href={href}
+                className="px-3 py-1.5 rounded-lg text-sm font-medium text-zinc-400 hover:text-white hover:bg-zinc-700/60 transition-all duration-200"
+              >
+                {label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </>
+  );
 }
