@@ -4,7 +4,7 @@ import { useState } from "react"
 export default function Like() {
     const [liked, setLiked] = useState(false)
     return (
-        <div className="absolute top-2 right-2 ">
+        <div className="absolute top-10 right-6 z-10">
             <svg xmlns="http://www.w3.org/2000/svg"
                 height="40px"
                 viewBox="0 -960 960 960"

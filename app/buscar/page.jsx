@@ -1,5 +1,10 @@
 import BarraBusqueda from "@/components/BarraBusqueda";
 
+export const metadata = {
+    title: "PepeFlix | Buscar",
+    description: "Streaming de películas",
+};
+
 export default async function Buscar() {
     return (
         <>

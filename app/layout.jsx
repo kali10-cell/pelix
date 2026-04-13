@@ -9,7 +9,7 @@ const outfit = Outfit({
 });
 
 export const metadata = {
-  title: "PepeFlix",
+  title: "PepeFlix | Peliculas populares",
   description: "Streaming de películas",
 };
 
