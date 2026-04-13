@@ -1,15 +1,12 @@
 import FichaPeliculaComponente from "@/components/FichaPeliculaComponente";
+import { fetchPelicula, fetchPeliTrailer } from "@/lib/tmdbApi";
 
-async function fetchPeli(idPeli) {
-    const res = await fetch(`https://api.themoviedb.org/3/movie/${idPeli}?api_key=${process.env.API_KEY}`)
-    const data = await res.json()
-    console.log(data)
-    return data
-}
+
+
 
 export async function generateMetadata({ params }) {
     const { id } = await params;
-    const peli = await fetchPeli(id)
+    const peli = await fetchPelicula(id)
     return {
         title: `Pepeflix | ${peli.title} `,
         description: `${peli.description}`
@@ -20,11 +17,13 @@ export async function generateMetadata({ params }) {
 export default async function FichaPelicula({ params }) {
     const { id } = await params;
 
-    const peli = await fetchPeli(id)
+    const peli = await fetchPelicula(id)
+    const trailer = await fetchPeliTrailer(id)
+    console.log(trailer)
     return (
         <>
             <h1>Ficha de película de la película: {id}</h1>
-            <FichaPeliculaComponente peli={peli} />
+            <FichaPeliculaComponente peli={peli} trailer={trailer} />
         </>
     )
 }

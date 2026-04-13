@@ -1,4 +1,4 @@
-import { fetchPeliculasPopulares } from "@/lib/fetchPeliculasPopulares";
+import { fetchPeliculasPopulares } from "@/lib/tmdbApi";
 import TarjetaPeli from "./TarjetaPeli";
 
 

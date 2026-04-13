@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function FichaPeliculaComponente({ peli }) {
+export default function FichaPeliculaComponente({ peli, trailer }) {
     return (
         <>
             <Link href="/">Atrás</Link >
@@ -14,6 +14,9 @@ export default function FichaPeliculaComponente({ peli }) {
                     <span className="text-xs">Estreno: {peli.release_date}</span>
                     <span className="text-xs">Valoración: {Math.round(peli.vote_average)} estrellas</span>
                     <p>{peli.overview}</p>
+                </div>
+                <div>
+                    
                 </div>
             </article >
         </>
