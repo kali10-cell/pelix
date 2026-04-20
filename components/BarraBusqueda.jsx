@@ -21,12 +21,12 @@ export default function BarraBusqueda() {
 
   function buscar() {
     // Si le da a enviar sin texto, no envías nada
-    if (!texto.trim()) return;
+    if (!texto.trim()) return
 
     // Construir nueva URL con el parámetro q
     const params = new URLSearchParams(searchParams);
-    params.set("q", texto.trim());
-    router.push(`${pathname}?${params.toString()}`);
+    params.set("q", texto.trim()); //q=superman+batman
+    router.push(`${pathname}?${params.toString()}`); //localhost:3000/buscar?q=superman+batman
   }
 
   return (

@@ -8,7 +8,7 @@ export const metadata = {
 };
 
 export default async function Buscar({ searchParams }) {
-  const { q } = await searchParams; // En Next.js 15+ searchParams es una Promise
+  const { q } = await searchParams; // En Next.js 15+ searchParams es una Promise q: "superman+batman"
   const data = q ? await fetchBusqueda(q) : null; // Tráeme los datos de la API, si no trae nada. null
   return (
     <div className="w-full px-6 py-8 flex flex-col gap-6 min-h-screen">

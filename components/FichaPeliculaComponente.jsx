@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import CajaComentarios from "./CajaComentarios";
 
 export default function FichaPeliculaComponente({ peli, trailer }) {
   const backdropUrl = peli.backdrop_path
@@ -50,17 +51,17 @@ export default function FichaPeliculaComponente({ peli, trailer }) {
       <div className="relative -mt-48 px-6 pb-12 max-w-5xl mx-auto">
         <div className="flex flex-col md:flex-row gap-8 items-start">
           {/* Poster */}
-          {posterUrl && (
-            <div className="shrink-0">
-              <Image
-                src={posterUrl}
-                width={240}
-                height={360}
-                className="rounded-2xl shadow-2xl border border-zinc-700/50"
-                alt={`Poster de ${peli.title}`}
-              />
-            </div>
-          )}
+
+          <div className="shrink-0">
+            <Image
+              src={posterUrl ? posterUrl : "/poster-not-found.avif"}
+              width={240}
+              height={360}
+              className="rounded-2xl shadow-2xl border border-zinc-700/50"
+              alt={`Poster de ${peli.title}`}
+            />
+          </div>
+
 
           {/* Info */}
           <div className="flex flex-col gap-4 pt-4 md:pt-32">
@@ -148,6 +149,7 @@ export default function FichaPeliculaComponente({ peli, trailer }) {
           </div>
         )}
       </div>
+      <CajaComentarios/>
     </div>
   );
 }
