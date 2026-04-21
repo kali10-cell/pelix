@@ -59,7 +59,7 @@ export default function TarjetaPeli({ peliData }) {
 
       {/* Like — fuera del Link para no activar navegación */}
       <div className="absolute top-2 right-2 z-10">
-        <Like />
+        <Like idPeli={peliData.id}/>
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ export default async function BuscarId({ searchParams }) {
     const peliData = q ? await fetchPelicula(q) : null
 
     return (
-        <div>
+        <div className="min-h-screen">
             <h1>BuscarID</h1>
             <BarraBusqueda />
             {
