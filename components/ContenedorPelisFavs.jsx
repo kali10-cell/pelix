@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 export default function ContenedorPelisFavs() {
 
-    const favoritas = useFavoritas(state => state.favoritas)
+    const favoritas = useFavoritas(state => state.favoritas) // Array de peliculas favoritas [121221,354345, 34234324]
     const [peliculasFavoritas, setPeliculasFavoritas] = useState([])
 
     useEffect(() => {
