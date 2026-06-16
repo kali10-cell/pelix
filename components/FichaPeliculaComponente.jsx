@@ -112,6 +112,25 @@ export default function FichaPeliculaComponente({ peli, trailer }) {
               </div>
             )}
 
+            <div className="flex flex-wrap gap-3">
+              <a
+                href={`https://www.themoviedb.org/movie/${peli.id}/watch`}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center rounded-full bg-red-600 px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-red-500"
+              >
+                Comprar
+              </a>
+              {trailer?.key && (
+                <a
+                  href="#trailer"
+                  className="inline-flex items-center justify-center rounded-full border border-zinc-500 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-zinc-800"
+                >
+                  Ver trailer
+                </a>
+              )}
+            </div>
+
             {/* Sinopsis */}
             {peli.overview && (
               <div className="mt-2">
@@ -128,7 +147,7 @@ export default function FichaPeliculaComponente({ peli, trailer }) {
 
         {/* Trailer */}
         {trailer?.key ? (
-          <div className="mt-12">
+          <div id="trailer" className="mt-12">
             <h2 className="text-xs font-semibold uppercase tracking-widest text-zinc-500 mb-4">
               Tráiler oficial
             </h2>
