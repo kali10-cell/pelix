@@ -1,10 +1,13 @@
 "use client";
 
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const DEMO_USER_KEY = "pepeflix-demo-user";
 
 export default function LoginPage() {
+  const router = useRouter();
   const [email, setEmail] = useState("demo@pepeflix.com");
   const [password, setPassword] = useState("123456");
   const [user, setUser] = useState(null);
@@ -20,6 +23,7 @@ export default function LoginPage() {
     const demoUser = { email: email || "demo@pepeflix.com" };
     window.localStorage.setItem(DEMO_USER_KEY, JSON.stringify(demoUser));
     setUser(demoUser);
+    router.push("/planes");
   }
 
   function cerrarSesion() {
@@ -47,6 +51,12 @@ export default function LoginPage() {
                 {user.email}
               </p>
             </div>
+            <Link
+              href="/planes"
+              className="rounded-md bg-red-600 px-4 py-3 text-center text-sm font-bold text-white transition-colors hover:bg-red-500"
+            >
+              Ver planes
+            </Link>
             <button
               type="button"
               onClick={cerrarSesion}
