@@ -2,11 +2,11 @@
 
 import { useState } from "react";
 
-export default function BotonComprarStripe({ peli }) {
+export default function BotonPlanStripe({ planId, destacado }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  async function comprar() {
+  async function suscribirse() {
     setLoading(true);
     setError("");
 
@@ -16,11 +16,7 @@ export default function BotonComprarStripe({ peli }) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          id: peli.id,
-          title: peli.title,
-          posterPath: peli.poster_path,
-        }),
+        body: JSON.stringify({ planId }),
       });
 
       const data = await res.json();
@@ -40,11 +36,15 @@ export default function BotonComprarStripe({ peli }) {
     <div className="flex flex-col gap-2">
       <button
         type="button"
-        onClick={comprar}
+        onClick={suscribirse}
         disabled={loading}
-        className="inline-flex items-center justify-center rounded-full bg-red-600 px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-red-500 disabled:cursor-not-allowed disabled:bg-zinc-600"
+        className={`inline-flex w-full items-center justify-center rounded-md px-4 py-3 text-sm font-bold transition-colors disabled:cursor-not-allowed disabled:bg-zinc-600 ${
+          destacado
+            ? "bg-red-600 text-white hover:bg-red-500"
+            : "bg-white text-zinc-950 hover:bg-zinc-200"
+        }`}
       >
-        {loading ? "Abriendo Stripe..." : "Comprar con Stripe"}
+        {loading ? "Abriendo Stripe..." : "Suscribirse"}
       </button>
       {error && <p className="text-xs text-red-300">{error}</p>}
     </div>

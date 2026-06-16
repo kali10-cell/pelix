@@ -1,4 +1,5 @@
 import Stripe from "stripe";
+import { getPlan } from "@/lib/planes";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
@@ -10,43 +11,44 @@ export async function POST(request) {
     );
   }
 
-  const { id, title, posterPath } = await request.json();
+  const { planId } = await request.json();
   const origin = request.headers.get("origin") ?? "http://localhost:3000";
+  const plan = getPlan(planId);
 
-  if (!id || !title) {
+  if (!plan) {
     return Response.json(
-      { error: "Faltan datos de la pelicula." },
+      { error: "Plan no valido." },
       { status: 400 },
     );
   }
 
   const session = await stripe.checkout.sessions.create({
-    mode: "payment",
+    mode: "subscription",
     payment_method_types: ["card"],
     line_items: [
       {
         quantity: 1,
         price_data: {
           currency: "eur",
-          unit_amount: 499,
+          unit_amount: plan.precio,
+          recurring: {
+            interval: "month",
+          },
           product_data: {
-            name: `Comprar ${title}`,
-            images: posterPath
-              ? [`https://image.tmdb.org/t/p/w500${posterPath}`]
-              : undefined,
+            name: `PepeFlix ${plan.nombre}`,
+            description: `${plan.calidad} · ${plan.pantallas}`,
             metadata: {
-              tmdb_id: String(id),
+              plan: plan.id,
             },
           },
         },
       },
     ],
     metadata: {
-      tmdb_id: String(id),
-      title,
+      plan: plan.id,
     },
-    success_url: `${origin}/pelicula/${id}?comprado=1`,
-    cancel_url: `${origin}/pelicula/${id}`,
+    success_url: `${origin}/planes?checkout=success&plan=${plan.id}`,
+    cancel_url: `${origin}/planes?checkout=cancelled&plan=${plan.id}`,
   });
 
   return Response.json({ url: session.url });

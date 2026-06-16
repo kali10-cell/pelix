@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import BotonComprarStripe from "./BotonComprarStripe";
 import CajaComentarios from "./CajaComentarios";
 
 export default function FichaPeliculaComponente({ peli, trailer }) {
@@ -114,7 +113,12 @@ export default function FichaPeliculaComponente({ peli, trailer }) {
             )}
 
             <div className="flex flex-wrap gap-3">
-              <BotonComprarStripe peli={peli} />
+              <Link
+                href="/planes"
+                className="inline-flex items-center justify-center rounded-full bg-red-600 px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-red-500"
+              >
+                Ver planes
+              </Link>
               {trailer?.key && (
                 <a
                   href="#trailer"
