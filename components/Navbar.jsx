@@ -6,6 +6,7 @@ const links = [
   { href: "/buscarid", label: "Buscar ID" },
   { href: "/favoritos", label: "Favoritos" },
   { href: "/planes", label: "Planes" },
+  { href: "/login", label: "Login" },
 ];
 
 export default function Navbar() {
