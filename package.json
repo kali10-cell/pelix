@@ -28,13 +28,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/IFCD0210-2026/pepeflix.git"
+    "url": "git+https://github.com/kali10-cell/pelix.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/IFCD0210-2026/pepeflix/issues"
+    "url": "https://github.com/kali10-cell/pelix/issues"
   },
-  "homepage": "https://github.com/IFCD0210-2026/pepeflix#readme"
+  "homepage": "https://github.com/kali10-cell/pelix#readme"
 }
