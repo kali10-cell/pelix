@@ -6,6 +6,7 @@ const links = [
   { href: "/buscarid", label: "Buscar ID" },
   { href: "/favoritos", label: "Favoritos" },
   { href: "/planes", label: "Planes" },
+  { href: "/cuenta", label: "Mi cuenta" },
   { href: "/login", label: "Login" },
 ];
 

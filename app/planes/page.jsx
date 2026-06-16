@@ -1,9 +1,11 @@
+import Link from "next/link";
 import BotonPlanStripe from "@/components/BotonPlanStripe";
+import GuardarPlanCheckout from "@/components/GuardarPlanCheckout";
 import { getPlanes } from "@/lib/planes";
 
 export const metadata = {
   title: "PepeFlix | Planes",
-  description: "Planes de suscripción de PepeFlix",
+  description: "Planes de suscripcion de PepeFlix",
 };
 
 function formatPrecio(cents) {
@@ -15,20 +17,25 @@ function formatPrecio(cents) {
 
 export default function PlanesPage({ searchParams }) {
   const checkout = searchParams?.checkout;
+  const planId = searchParams?.plan;
   const planes = getPlanes();
 
   return (
     <div className="w-full min-h-screen px-6 py-10">
+      <GuardarPlanCheckout checkout={checkout} planId={planId} />
       <div className="mx-auto flex max-w-6xl flex-col gap-8">
         <div className="flex flex-col gap-2">
           <h1 className="text-3xl font-bold text-white">Elige tu plan</h1>
           <p className="max-w-2xl text-sm text-zinc-300">
-            Suscripciones mensuales con Stripe, al estilo Netflix.
+            Suscripciones mensuales
           </p>
           {checkout === "success" && (
-            <p className="rounded-md border border-green-500/40 bg-green-500/10 px-4 py-3 text-sm text-green-200">
-              Suscripción creada correctamente.
-            </p>
+            <div className="flex flex-wrap items-center justify-between gap-3 rounded-md border border-green-500/40 bg-green-500/10 px-4 py-3 text-sm text-green-200">
+              <span>Suscripcion creada correctamente.</span>
+              <Link href="/cuenta" className="font-bold text-white underline">
+                Ver mi plan
+              </Link>
+            </div>
           )}
           {checkout === "cancelled" && (
             <p className="rounded-md border border-yellow-500/40 bg-yellow-500/10 px-4 py-3 text-sm text-yellow-100">
@@ -67,7 +74,7 @@ export default function PlanesPage({ searchParams }) {
               <ul className="flex flex-col gap-2 text-sm text-zinc-300">
                 <li>{plan.calidad}</li>
                 <li>{plan.pantallas}</li>
-                <li>Cancelación desde Stripe</li>
+                <li>Cancelacion desde Stripe</li>
               </ul>
 
               <div className="mt-auto">

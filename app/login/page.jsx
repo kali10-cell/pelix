@@ -3,8 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-
-const DEMO_USER_KEY = "pepeflix-demo-user";
+import { DEFAULT_DEMO_PLAN, DEMO_PLAN_KEY, DEMO_USER_KEY } from "@/lib/demoSession";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -22,8 +21,11 @@ export default function LoginPage() {
 
     const demoUser = { email: email || "demo@pepeflix.com" };
     window.localStorage.setItem(DEMO_USER_KEY, JSON.stringify(demoUser));
+    if (!window.localStorage.getItem(DEMO_PLAN_KEY)) {
+      window.localStorage.setItem(DEMO_PLAN_KEY, DEFAULT_DEMO_PLAN);
+    }
     setUser(demoUser);
-    router.push("/planes");
+    router.push("/cuenta");
   }
 
   function cerrarSesion() {
@@ -52,10 +54,10 @@ export default function LoginPage() {
               </p>
             </div>
             <Link
-              href="/planes"
+              href="/cuenta"
               className="rounded-md bg-red-600 px-4 py-3 text-center text-sm font-bold text-white transition-colors hover:bg-red-500"
             >
-              Ver planes
+              Ver mi plan
             </Link>
             <button
               type="button"
