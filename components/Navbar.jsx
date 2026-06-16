@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 
 const links = [
   { href: "/", label: "Destacadas" },
@@ -11,6 +14,12 @@ const links = [
 ];
 
 export default function Navbar() {
+  const [open, setOpen] = useState(false);
+
+  function closeMenu() {
+    setOpen(false);
+  }
+
   return (
     <>
       {/* Sidebar — solo en md+ */}
@@ -33,22 +42,39 @@ export default function Navbar() {
       </nav>
 
       {/* Barra superior — solo en móvil */}
-      <nav className="md:hidden flex items-center justify-between px-4 h-full">
-        <Link href="/" className="font-mono text-xl tracking-widest">
+      <nav className="md:hidden relative flex items-center justify-between px-4 h-full">
+        <Link href="/" onClick={closeMenu} className="font-mono text-xl tracking-widest">
           <span className="text-red-600">P</span>epe<span className="text-red-600">F</span>lix
         </Link>
-        <ul className="flex items-center gap-1">
-          {links.map(({ href, label }) => (
-            <li key={href}>
-              <Link
-                href={href}
-                className="px-3 py-1.5 rounded-lg text-sm font-medium text-zinc-400 hover:text-white hover:bg-zinc-700/60 transition-all duration-200"
-              >
-                {label}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <button
+          type="button"
+          onClick={() => setOpen((value) => !value)}
+          aria-label={open ? "Cerrar menu" : "Abrir menu"}
+          aria-expanded={open}
+          className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-md border border-zinc-700 bg-zinc-900/80 text-white"
+        >
+          <span className={`h-0.5 w-5 rounded bg-white transition-transform ${open ? "translate-y-2 rotate-45" : ""}`} />
+          <span className={`h-0.5 w-5 rounded bg-white transition-opacity ${open ? "opacity-0" : "opacity-100"}`} />
+          <span className={`h-0.5 w-5 rounded bg-white transition-transform ${open ? "-translate-y-2 -rotate-45" : ""}`} />
+        </button>
+
+        {open && (
+          <div className="absolute left-0 right-0 top-14 z-50 border-t border-zinc-700 bg-zinc-900 shadow-2xl shadow-black/50">
+            <ul className="flex flex-col p-2">
+              {links.map(({ href, label }) => (
+                <li key={href}>
+                  <Link
+                    href={href}
+                    onClick={closeMenu}
+                    className="block rounded-md px-4 py-3 text-sm font-medium text-zinc-200 hover:bg-zinc-800 hover:text-white"
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </nav>
     </>
   );
