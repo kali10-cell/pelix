@@ -16,7 +16,7 @@ export default function LoginPage() {
     if (savedUser) setUser(JSON.parse(savedUser));
   }, []);
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
 
     const demoUser = { email: email || "demo@pepeflix.com" };
@@ -25,6 +25,17 @@ export default function LoginPage() {
       window.localStorage.setItem(DEMO_PLAN_KEY, DEFAULT_DEMO_PLAN);
     }
     setUser(demoUser);
+    fetch("/api/demo-db", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        action: "login",
+        email: demoUser.email,
+        planId: window.localStorage.getItem(DEMO_PLAN_KEY) ?? DEFAULT_DEMO_PLAN,
+      }),
+    });
     router.push("/cuenta");
   }
 
