@@ -8,7 +8,7 @@ const outfit = Outfit({
 });
 
 export const metadata = {
-  title: "PepeFlix | Peliculas populares",
+  title: "PepeFlix | Películas populares",
   description: "Streaming de películas",
 };
 
@@ -16,20 +16,48 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es" className={`${outfit.className} h-full`}>
       <body className="min-h-full bg-zinc-700 text-white">
-        {/* Sidebar en desktop / barra superior en móvil */}
-        <aside className="
-          fixed top-0 left-0 z-50 bg-zinc-800
-          w-full h-14 md:w-1/5 md:h-screen
-        ">
+        <aside className="fixed left-0 top-0 z-50 h-14 w-full bg-zinc-800 md:h-screen md:w-1/5">
           <Navbar />
         </aside>
 
-        {/* Contenido — margen superior en móvil, margen izquierdo en desktop */}
-        <main className="
-          flex flex-col items-center bg-zinc-700
-          pt-14 md:pt-0 md:ml-[20%]
-        ">
+        <main className="flex min-h-screen flex-col items-center bg-zinc-700 pt-14 md:ml-[20%] md:pt-0">
           {children}
+
+          <section className="w-full px-6 pb-8">
+            <div className="grid gap-8 rounded-2xl border border-red-900/40 bg-zinc-950 p-6 md:grid-cols-[1fr_220px] md:items-center">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-red-500 sm:text-sm">
+                  ACCESO MÓVIL
+                </p>
+
+                <h2 className="mt-2 text-2xl font-bold text-white sm:text-4xl">
+                  Escanea y abre Pelix
+                </h2>
+
+                <p className="mt-4 max-w-2xl text-sm leading-6 text-zinc-400 sm:text-base">
+                  Escanea el código QR para acceder a Pelix desde tu móvil y
+                  disfrutar de películas, favoritos y membresías premium.
+                </p>
+
+                <a
+                  href="https://pelix-two.vercel.app/login"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-6 inline-flex items-center justify-center rounded-lg bg-red-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-red-700"
+                >
+                  Abrir Pelix
+                </a>
+              </div>
+
+              <div className="mx-auto w-full max-w-44 rounded-3xl border border-red-900/40 bg-white p-3 shadow-lg sm:max-w-56 sm:p-4 md:max-w-none md:rounded-lg">
+                <img
+                  src="/pelix-qr.png"
+                  alt="Código QR para abrir Pelix"
+                  className="h-auto w-full"
+                />
+              </div>
+            </div>
+          </section>
         </main>
       </body>
     </html>
