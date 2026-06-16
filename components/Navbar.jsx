@@ -10,7 +10,6 @@ const links = [
   { href: "/favoritos", label: "Favoritos" },
   { href: "/planes", label: "Planes" },
   { href: "/cuenta", label: "Mi cuenta" },
-  { href: "/login", label: "Login" },
 ];
 
 export default function Navbar() {
@@ -42,31 +41,38 @@ export default function Navbar() {
       </nav>
 
       {/* Barra superior — solo en móvil */}
-      <nav className="md:hidden relative flex items-center justify-between px-4 h-full">
-        <Link href="/" onClick={closeMenu} className="font-mono text-xl tracking-widest">
-          <span className="text-red-600">P</span>epe<span className="text-red-600">F</span>lix
+      <nav className="md:hidden relative flex items-center justify-between px-4 h-full bg-black">
+        <Link href="/" onClick={closeMenu} className="font-mono text-2xl font-bold tracking-widest text-red-600">
+          PepeFlix
         </Link>
-        <button
-          type="button"
-          onClick={() => setOpen((value) => !value)}
-          aria-label={open ? "Cerrar menu" : "Abrir menu"}
-          aria-expanded={open}
-          className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-md border border-zinc-700 bg-zinc-900/80 text-white"
-        >
-          <span className={`h-0.5 w-5 rounded bg-white transition-transform ${open ? "translate-y-2 rotate-45" : ""}`} />
-          <span className={`h-0.5 w-5 rounded bg-white transition-opacity ${open ? "opacity-0" : "opacity-100"}`} />
-          <span className={`h-0.5 w-5 rounded bg-white transition-transform ${open ? "-translate-y-2 -rotate-45" : ""}`} />
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => setOpen((value) => !value)}
+            aria-label={open ? "Cerrar menu" : "Abrir menu"}
+            aria-expanded={open}
+            className="h-8 rounded border border-zinc-500 bg-black px-3 text-sm font-medium text-white"
+          >
+            Menu {open ? "▲" : "▼"}
+          </button>
+          <Link
+            href="/login"
+            onClick={closeMenu}
+            className="h-8 rounded bg-red-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-red-500"
+          >
+            Entrar
+          </Link>
+        </div>
 
         {open && (
-          <div className="absolute left-0 right-0 top-14 z-50 border-t border-zinc-700 bg-zinc-900 shadow-2xl shadow-black/50">
-            <ul className="flex flex-col p-2">
+          <div className="absolute left-0 right-0 top-14 z-50 border-t border-zinc-800 bg-black shadow-2xl shadow-black/70">
+            <ul className="flex flex-col px-4 py-3">
               {links.map(({ href, label }) => (
                 <li key={href}>
                   <Link
                     href={href}
                     onClick={closeMenu}
-                    className="block rounded-md px-4 py-3 text-sm font-medium text-zinc-200 hover:bg-zinc-800 hover:text-white"
+                    className="block border-b border-zinc-900 py-3 text-sm font-medium text-zinc-200 hover:text-white"
                   >
                     {label}
                   </Link>
