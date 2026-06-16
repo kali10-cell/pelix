@@ -15,12 +15,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="es" className={`${outfit.className} h-full`}>
-      <body className="min-h-full bg-zinc-700 text-white">
-        <aside className="fixed left-0 top-0 z-50 h-14 w-full bg-zinc-800 md:h-screen md:w-1/5">
+      <body className="min-h-full bg-black text-white">
+        <aside className="fixed left-0 top-0 z-50 h-14 w-full bg-black md:h-screen md:w-1/5">
           <Navbar />
         </aside>
 
-        <main className="flex min-h-screen flex-col items-center bg-zinc-700 pt-14 md:ml-[20%] md:pt-0">
+        <main className="flex min-h-screen flex-col items-center bg-black pt-14 md:ml-[20%] md:pt-0">
           {children}
 
           <section className="w-full px-6 pb-8">
