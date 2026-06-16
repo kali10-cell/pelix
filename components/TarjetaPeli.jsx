@@ -9,46 +9,47 @@ export default function TarjetaPeli({ peliData }) {
   return (
     <div className="relative group">
       <Link href={`/pelicula/${peliData.id}`} className="block">
-        <article className="relative overflow-hidden rounded-2xl bg-zinc-800 shadow-lg transition-all duration-300 ease-out group-hover:shadow-2xl group-hover:shadow-black/50 group-hover:-translate-y-1">
-          {/* Poster */}
+        <article className="relative overflow-hidden rounded-2xl border border-zinc-800 bg-black shadow-xl transition-all duration-300 ease-out group-hover:-translate-y-1 group-hover:border-red-600/50 group-hover:shadow-2xl group-hover:shadow-red-950/40">
           <div className="relative aspect-2/3 w-full">
             <Image
-              className="object-cover"
+              className="object-cover transition duration-500 group-hover:scale-105"
               loading="eager"
-              src={peliData.poster_path ? `https://image.tmdb.org/t/p/w500${peliData.poster_path}` : "/poster-not-found.avif"}
+              src={
+                peliData.poster_path
+                  ? `https://image.tmdb.org/t/p/w500${peliData.poster_path}`
+                  : "/poster-not-found.avif"
+              }
               fill
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
               alt={`Poster de ${peliData.title}`}
             />
 
-            {/* Overlay gradiente inferior — siempre visible */}
-            <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-transparent" />
 
-            {/* Info inferior */}
             <div className="absolute bottom-0 left-0 right-0 p-3">
-              <h2 className="text-white font-semibold text-sm leading-tight line-clamp-2">
+              <h2 className="line-clamp-2 text-sm font-bold leading-tight text-white">
                 {peliData.title}
               </h2>
-              <div className="flex items-center justify-between mt-1">
-                {year && (
-                  <span className="text-zinc-400 text-xs">{year}</span>
-                )}
+
+              <div className="mt-1 flex items-center justify-between">
+                {year && <span className="text-xs text-zinc-400">{year}</span>}
+
                 {peliData.vote_average > 0 && (
                   <span className="flex items-center gap-1 text-xs">
                     <span className="text-yellow-400">★</span>
-                    <span className="text-zinc-300 font-medium">{rating}</span>
+                    <span className="font-bold text-white">{rating}</span>
                   </span>
                 )}
               </div>
             </div>
 
-            {/* Overlay hover — info extra */}
-            <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center p-4 gap-3">
-              <span className="text-white text-xs font-semibold uppercase tracking-widest border border-white/30 px-3 py-1 rounded-full">
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-gradient-to-t from-black via-black/90 to-black/40 p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+              <span className="rounded-full border border-red-500/60 bg-red-600 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-white">
                 Ver ficha
               </span>
+
               {peliData.overview && (
-                <p className="text-zinc-300 text-xs text-center line-clamp-4 leading-relaxed">
+                <p className="line-clamp-4 text-center text-xs leading-relaxed text-zinc-300">
                   {peliData.overview}
                 </p>
               )}
@@ -57,9 +58,8 @@ export default function TarjetaPeli({ peliData }) {
         </article>
       </Link>
 
-      {/* Like — fuera del Link para no activar navegación */}
-      <div className="absolute top-2 right-2 z-10">
-        <Like idPeli={peliData.id}/>
+      <div className="absolute right-2 top-2 z-10">
+        <Like idPeli={peliData.id} />
       </div>
     </div>
   );
